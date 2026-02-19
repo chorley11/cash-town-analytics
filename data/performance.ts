@@ -31,13 +31,15 @@ export const strategies = cashTownData.strategies.map(s => ({
 
 export const positions = cashTownData.open_positions.map(p => ({
   symbol: p.symbol,
-  side: p.direction,
-  entryPrice: p.entry_price,
-  currentPrice: p.current_price,
-  unrealizedPnl: p.unrealized_pnl_usd,
-  unrealizedPnlPct: p.unrealized_pnl_pct,
+  side: p.direction as "long" | "short",
+  size: p.size || 0,
+  entry_price: p.entry_price,
+  mark_price: p.current_price,
+  liquidation_price: p.liquidation_price || 0,
+  unrealized_pnl: p.unrealized_pnl_usd,
+  unrealized_pnl_pct: p.unrealized_pnl_pct,
   leverage: p.leverage,
-  liquidationPrice: p.liquidation_price,
+  strategy: "cucurbit",
 }));
 
 export const equityCurve = cashTownData.equity_history.map(e => ({
