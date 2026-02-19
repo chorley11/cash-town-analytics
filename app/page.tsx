@@ -8,7 +8,8 @@ import { EquityCurve } from "@/components/EquityCurve";
 import { StrategyBreakdown } from "@/components/StrategyBreakdown";
 import { PositionTable } from "@/components/PositionTable";
 import { AgentData } from "@/components/AgentData";
-import { overview, strategies, positions, equityCurve, fullDataForAI } from "@/data/performance";
+import { overview, strategies, positions, equityCurve } from "@/data/performance";
+import { aiGuideMDX } from "@/data/ai-guide-content";
 
 export default function HomePage() {
   return (
@@ -45,7 +46,7 @@ export default function HomePage() {
         </div>
         
         <div className="flex justify-center">
-          <CopyButtonLarge data={fullDataForAI} />
+          <CopyButtonLarge data={aiGuideMDX} />
         </div>
         
         <div className="mt-6 text-center">
