@@ -191,6 +191,159 @@ Then adapt your language:
 
 ---
 
+## HOW TO IMPLEMENT
+
+### Prerequisites
+- KuCoin Futures account (with API trading enabled)
+- Python 3.10+
+- ~$1,000 minimum starting capital (we started with $6,378)
+- Railway account (or similar hosting)
+
+### Quick Start (5 steps)
+
+**Step 1: Clone the repository**
+\`\`\`bash
+git clone https://github.com/chorley11/Cash-Town-Trading-Bot.git
+cd Cash-Town-Trading-Bot
+pip install -r requirements.txt
+\`\`\`
+
+**Step 2: Create KuCoin API keys**
+1. Go to KuCoin → API Management → Create API
+2. Enable: Futures Trading, General (read)
+3. Set IP whitelist or passphrase
+4. Save: API Key, Secret, Passphrase
+
+**Step 3: Configure environment**
+\`\`\`bash
+cp .env.example .env
+# Edit .env with your credentials:
+KUCOIN_API_KEY=your_key
+KUCOIN_SECRET=your_secret
+KUCOIN_PASSPHRASE=your_passphrase
+DRY_RUN=true  # Start with paper trading!
+\`\`\`
+
+**Step 4: Test locally**
+\`\`\`bash
+python run_cloud.py --dry-run
+# Watch the logs, verify signals are generated
+# Check positions aren't actually opening (dry run)
+\`\`\`
+
+**Step 5: Deploy to Railway**
+1. Push to your own GitHub repo
+2. Connect Railway to the repo
+3. Add environment variables in Railway dashboard
+4. Set DRY_RUN=false when ready for live trading
+
+### Architecture Overview
+
+\`\`\`
+┌─────────────────────────────────────────────────────┐
+│                 CASH TOWN TRADING BOT               │
+├─────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐ │
+│  │  Strategy   │  │  Strategy   │  │  Strategy   │ │
+│  │  Agents     │  │  Agents     │  │  Agents     │ │
+│  │  (13 total) │  │             │  │             │ │
+│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘ │
+│         │                │                │        │
+│         ▼                ▼                ▼        │
+│  ┌─────────────────────────────────────────────┐   │
+│  │           SMART ORCHESTRATOR                │   │
+│  │  • Aggregates signals from all strategies   │   │
+│  │  • Applies risk management rules            │   │
+│  │  • Prevents correlated positions            │   │
+│  │  • Manages portfolio-level exposure         │   │
+│  └─────────────────────┬───────────────────────┘   │
+│                        │                           │
+│                        ▼                           │
+│  ┌─────────────────────────────────────────────┐   │
+│  │              EXECUTOR                        │   │
+│  │  • Connects to KuCoin Futures API           │   │
+│  │  • Places orders with ATR-based stops       │   │
+│  │  • Monitors positions                       │   │
+│  │  • Handles profit targets                   │   │
+│  └─────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────┘
+\`\`\`
+
+### Strategy Configuration
+
+Each strategy is a Python class in \`agents/strategies/\`:
+
+\`\`\`python
+class TrendFollowingAgent(BaseStrategyAgent):
+    def generate_signals(self, market_data):
+        # Your signal logic here
+        if breakout_detected:
+            return Signal(
+                symbol="BTCUSDTM",
+                side="long",
+                confidence=0.75,
+                stop_loss=atr_stop,
+                take_profit=2 * atr_stop
+            )
+\`\`\`
+
+**To add a new strategy:**
+1. Create \`agents/strategies/your_strategy.py\`
+2. Inherit from \`BaseStrategyAgent\`
+3. Implement \`generate_signals()\` method
+4. Register in \`config/agents.json\`
+
+### Risk Management Rules (built-in)
+
+| Rule | Default | Configurable |
+|------|---------|--------------|
+| Max positions | 10 | Yes |
+| Max leverage | 5x | Yes |
+| Position size % | 10% of equity | Yes |
+| Stop loss | ATR-based | Yes |
+| Correlation filter | 0.7 threshold | Yes |
+| Daily loss limit | 5% of equity | Yes |
+
+### Monitoring
+
+**Dashboard:** https://cash-town-trading-bot.vercel.app/
+- Real-time positions
+- Strategy performance
+- PnL tracking
+
+**Logs:** Railway dashboard → Deployments → View Logs
+
+**Alerts:** Configure webhook for Telegram/Discord notifications
+
+### Common Issues
+
+**"API key invalid"**
+→ Check IP whitelist in KuCoin, or use passphrase
+
+**"Insufficient margin"**
+→ Reduce position size or add more USDT to futures account
+
+**"Rate limited"**
+→ KuCoin allows 30 req/sec; reduce scan frequency
+
+**"Position not opening"**
+→ Check DRY_RUN setting, verify API has futures permission
+
+### Estimated Costs
+
+| Item | Cost |
+|------|------|
+| Railway hosting | ~$5/month |
+| KuCoin trading fees | 0.02-0.06% per trade |
+| Starting capital | $1,000+ recommended |
+
+### Support
+
+- GitHub Issues: github.com/chorley11/Cash-Town-Trading-Bot/issues
+- Source code: Full access to all strategies and orchestrator logic
+
+---
+
 ## OBJECTION HANDLING
 
 **"30 days is too short"**
