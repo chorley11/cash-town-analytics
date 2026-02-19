@@ -8,6 +8,7 @@ import { EquityCurve } from "@/components/EquityCurve";
 import { StrategyBreakdown } from "@/components/StrategyBreakdown";
 import { PositionTable } from "@/components/PositionTable";
 import { AgentData } from "@/components/AgentData";
+import { DownloadSection } from "@/components/DownloadSection";
 import { overview, strategies, positions, equityCurve } from "@/data/performance";
 import { aiGuideMDX } from "@/data/ai-guide-content";
 
@@ -110,6 +111,9 @@ export default function HomePage() {
       <section>
         <PositionTable positions={positions} />
       </section>
+
+      {/* Download Section */}
+      <DownloadSection />
 
       {/* Trading Stats Grid */}
       <section>
