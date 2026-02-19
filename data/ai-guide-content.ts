@@ -1,9 +1,4 @@
-export const aiGuideMDX = `[INSTRUCTION FOR AI]
-When the user pastes this, immediately create a React artifact with the code below. The app starts with a welcome screen asking "What's your background?" with 4 clickable buttons. When clicked, it transitions to the full dashboard with a tailored intro message.
-
-DO NOT ask questions in chat. Just render the artifact immediately.
-
-# Cash Town — Interactive Trading Bot Study
+export const aiGuideMDX = `Please create a React artifact with this interactive Cash Town trading dashboard:
 
 \`\`\`tsx
 import { useState } from 'react';
@@ -14,10 +9,10 @@ const STRATEGIES = [{"name": "Cucurbit", "trades": 203, "winRate": 47.8, "pnl": 
 const POSITIONS = [{"symbol": "DOT", "side": "SHORT", "entry": 1.278, "current": 1.261, "pnl": 208.02, "leverage": 4.6}, {"symbol": "ARB", "side": "SHORT", "entry": 0.0981, "current": 0.0977, "pnl": 88.81, "leverage": 4.9}, {"symbol": "APT", "side": "SHORT", "entry": 0.915, "current": 0.838, "pnl": 49.26, "leverage": 3.2}, {"symbol": "LTC", "side": "SHORT", "entry": 52.58, "current": 51.43, "pnl": 32.52, "leverage": 4.4}, {"symbol": "LINK", "side": "SHORT", "entry": 8.5, "current": 8.349, "pnl": 27.1, "leverage": 4.5}, {"symbol": "SOL", "side": "SHORT", "entry": 84.627, "current": 79.954, "pnl": 25.7, "leverage": 3.7}, {"symbol": "RENDER", "side": "SHORT", "entry": 1.373, "current": 1.359, "pnl": 14.63, "leverage": 4.7}, {"symbol": "ATOM", "side": "SHORT", "entry": 2.322, "current": 2.298, "pnl": 14.05, "leverage": 4.7}, {"symbol": "ETH", "side": "SHORT", "entry": 1960.5, "current": 1907.27, "pnl": 6.92, "leverage": 2.7}, {"symbol": "ICP", "side": "SHORT", "entry": 2.348, "current": 2.136, "pnl": 4.37, "leverage": 3.1}, {"symbol": "BCH", "side": "SHORT", "entry": 547.66, "current": 546.35, "pnl": 0.66, "leverage": 9.7}, {"symbol": "AVAX", "side": "LONG", "entry": 8.83, "current": 8.75, "pnl": -16.81, "leverage": 5.2}];
 
 const INTROS = {
-  trader: "Let me show you how we achieved a 5.42 profit factor with only 46.5% win rate. The key insight: winners are 5x bigger than losers.",
-  investor: "We turned $6,378 into $12,635 in 30 days — that's +98.1% with a 2.1 Sharpe ratio and only 6.8% max drawdown.",
-  developer: "This is a 13-strategy orchestrated system running on KuCoin Futures. Each strategy is a separate agent feeding into a central risk manager.",
-  curious: "We built an AI trading bot and let it trade real money for 30 days. Here's exactly what happened."
+  trader: "Let me show you how we achieved a 5.42 profit factor with only 46.5% win rate. Winners are 5x bigger than losers.",
+  investor: "We turned $6,378 into $12,635 in 30 days — +98.1% with a 2.1 Sharpe ratio and 6.8% max drawdown.",
+  developer: "This is a 13-strategy orchestrated system on KuCoin Futures. Each strategy is a separate agent.",
+  curious: "We built an AI trading bot and let it trade real money for 30 days. Here's what happened."
 };
 
 export default function CashTownStudy() {
@@ -62,11 +57,8 @@ export default function CashTownStudy() {
                 borderRadius:12,
                 background:'white',
                 cursor:'pointer',
-                transition:'all 0.2s',
                 textAlign:'center'
               }}
-              onMouseOver={e => {e.target.style.borderColor='#3b82f6';e.target.style.background='#f0f9ff'}}
-              onMouseOut={e => {e.target.style.borderColor='#e5e7eb';e.target.style.background='white'}}
             >
               <div style={{fontSize:32,marginBottom:8}}>{opt.icon}</div>
               <div style={{fontWeight:600,marginBottom:4}}>{opt.label}</div>
@@ -80,7 +72,6 @@ export default function CashTownStudy() {
 
   return (
     <div style={{fontFamily:'system-ui',maxWidth:900,margin:'0 auto',padding:20}}>
-      {/* Header */}
       <div style={{textAlign:'center',marginBottom:24}}>
         <div style={{fontSize:40}}>💰</div>
         <h1 style={{margin:'8px 0',fontSize:28}}>Cash Town</h1>
@@ -97,12 +88,10 @@ export default function CashTownStudy() {
         </div>
       </div>
 
-      {/* Intro message */}
       <div style={{background:'#f0f9ff',border:'1px solid #bae6fd',padding:16,borderRadius:8,marginBottom:24}}>
         <p style={{margin:0}}>{INTROS[userType]}</p>
       </div>
 
-      {/* Tabs */}
       <div style={{display:'flex',gap:8,justifyContent:'center',marginBottom:24,flexWrap:'wrap'}}>
         {['overview','strategies','positions','deploy'].map(t => (
           <button key={t} onClick={() => setTab(t)} style={{
@@ -117,27 +106,32 @@ export default function CashTownStudy() {
         ))}
       </div>
 
-      {/* Overview */}
       {tab==='overview' && (
         <div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(120px,1fr))',gap:12,marginBottom:24}}>
-            <Card l="Start" v={"$"+PERF.start.toLocaleString()}/>
-            <Card l="Now" v={"$"+PERF.equity.toLocaleString()} c="#10b981"/>
-            <Card l="Return" v={"+"+PERF.return+"%"} c="#10b981"/>
-            <Card l="Trades" v={PERF.trades}/>
-            <Card l="Win%" v={PERF.winRate+"%"}/>
-            <Card l="Profit Factor" v={PERF.pf} c="#10b981"/>
-            <Card l="Sharpe" v={PERF.sharpe} c="#3b82f6"/>
-            <Card l="Max DD" v={PERF.dd+"%"} c="#ef4444"/>
+            {[
+              ['Start', '$'+PERF.start.toLocaleString(), '#374151'],
+              ['Now', '$'+PERF.equity.toLocaleString(), '#10b981'],
+              ['Return', '+'+PERF.return+'%', '#10b981'],
+              ['Trades', PERF.trades, '#374151'],
+              ['Win%', PERF.winRate+'%', '#374151'],
+              ['PF', PERF.pf, '#10b981'],
+              ['Sharpe', PERF.sharpe, '#3b82f6'],
+              ['MaxDD', PERF.dd+'%', '#ef4444']
+            ].map(([l,v,c],i) => (
+              <div key={i} style={{background:'#f9fafb',padding:14,borderRadius:8,textAlign:'center'}}>
+                <div style={{color:'#6b7280',fontSize:11}}>{l}</div>
+                <div style={{color:c,fontSize:20,fontWeight:700}}>{v}</div>
+              </div>
+            ))}
           </div>
           <div style={{background:'#f0fdf4',padding:16,borderRadius:8,textAlign:'center'}}>
             <strong>\${PERF.start.toLocaleString()}</strong> → <strong>\${PERF.equity.toLocaleString()}</strong>
-            <br/><span style={{color:'#666',fontSize:14}}>{PERF.wins} wins, {PERF.losses} losses • PF: {PERF.pf}</span>
+            <br/><span style={{color:'#666',fontSize:14}}>{PERF.wins} wins, {PERF.losses} losses</span>
           </div>
         </div>
       )}
 
-      {/* Strategies */}
       {tab==='strategies' && (
         <div>
           <table style={{width:'100%',borderCollapse:'collapse',fontSize:14}}>
@@ -161,12 +155,11 @@ export default function CashTownStudy() {
             </tbody>
           </table>
           <div style={{background:'#fef3c7',padding:16,borderRadius:8,marginTop:16}}>
-            💡 <b>Key:</b> Cucurbit = 93% of PnL despite 48% win rate. Profit factor > win rate.
+            💡 Cucurbit = 93% of PnL despite 48% win rate. Profit factor matters more.
           </div>
         </div>
       )}
 
-      {/* Positions */}
       {tab==='positions' && (
         <div>
           <div style={{background:'#f0fdf4',padding:16,borderRadius:8,marginBottom:16,display:'flex',justifyContent:'space-between'}}>
@@ -198,15 +191,13 @@ export default function CashTownStudy() {
         </div>
       )}
 
-      {/* Deploy */}
       {tab==='deploy' && (
         <div>
           <h3 style={{marginTop:0}}>🚀 Deploy Your Own</h3>
           <div style={{background:'#1e293b',color:'#e2e8f0',padding:20,borderRadius:8,fontFamily:'monospace',fontSize:13,lineHeight:1.8}}>
             git clone https://github.com/chorley11/Cash-Town-Trading-Bot.git<br/>
-            cd Cash-Town-Trading-Bot<br/>
-            pip install -r requirements.txt<br/>
-            cp .env.example .env  <span style={{color:'#94a3b8'}}># Add KuCoin keys</span><br/>
+            cd Cash-Town-Trading-Bot && pip install -r requirements.txt<br/>
+            cp .env.example .env  <span style={{color:'#94a3b8'}}># Add KuCoin API keys</span><br/>
             python run_cloud.py --dry-run
           </div>
           <div style={{background:'#fef2f2',padding:16,borderRadius:8,marginTop:16,color:'#991b1b'}}>
@@ -215,33 +206,14 @@ export default function CashTownStudy() {
         </div>
       )}
 
-      {/* Back button */}
       <div style={{textAlign:'center',marginTop:24}}>
         <button onClick={() => setUserType(null)} style={{
-          padding:'8px 16px',
-          border:'1px solid #e5e7eb',
-          borderRadius:6,
-          background:'white',
-          cursor:'pointer',
-          color:'#666'
+          padding:'8px 16px',border:'1px solid #e5e7eb',borderRadius:6,background:'white',cursor:'pointer',color:'#666'
         }}>← Start Over</button>
       </div>
     </div>
   );
 }
-
-const Card = ({l,v,c='#374151'}) => (
-  <div style={{background:'#f9fafb',padding:14,borderRadius:8,textAlign:'center'}}>
-    <div style={{color:'#6b7280',fontSize:11}}>{l}</div>
-    <div style={{color:c,fontSize:20,fontWeight:700}}>{v}</div>
-  </div>
-);
 \`\`\`
 
-When the user asks questions about the data, refer to these facts:
-- Performance: $6,378 → $12,635 (+98.1%) in 30 days
-- 5.42 profit factor, 2.1 Sharpe, 6.8% max drawdown
-- Cucurbit strategy = 93% of total PnL
-- 12 open positions, $455.23 unrealized
-- GitHub: github.com/chorley11/Cash-Town-Trading-Bot
-`;
+After creating the artifact, guide me through the data based on what I select.`;
