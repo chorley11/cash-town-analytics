@@ -344,6 +344,202 @@ class TrendFollowingAgent(BaseStrategyAgent):
 
 ---
 
+## CLAUDE CODE INSTRUCTIONS
+
+Copy and paste this entire block into Claude Code CLI to have it build Cash Town for you:
+
+\`\`\`
+You are building Cash Town, a multi-strategy crypto futures trading bot. Follow these instructions precisely.
+
+## PROJECT OVERVIEW
+- Platform: KuCoin Futures (USDT-margined perpetuals)
+- Language: Python 3.10+
+- Deployment: Railway
+- Architecture: Multi-agent with central orchestrator
+
+## STEP 1: CREATE PROJECT STRUCTURE
+
+Create the following directory structure:
+\`\`\`
+cash-town/
+├── agents/
+│   ├── __init__.py
+│   ├── base_agent.py          # Base class for all strategy agents
+│   └── strategies/
+│       ├── __init__.py
+│       ├── trend_following.py
+│       ├── mean_reversion.py
+│       ├── momentum.py
+│       └── ... (add more)
+├── orchestrator/
+│   ├── __init__.py
+│   ├── server.py              # Main orchestrator
+│   ├── signal_aggregator.py   # Combines signals from agents
+│   └── risk_manager.py        # Portfolio-level risk rules
+├── execution/
+│   ├── __init__.py
+│   ├── kucoin_client.py       # KuCoin Futures API wrapper
+│   └── order_executor.py      # Order placement logic
+├── data/
+│   ├── __init__.py
+│   └── feed.py                # Market data fetcher
+├── config/
+│   └── agents.json            # Strategy configuration
+├── tests/
+│   └── test_strategies.py
+├── .env.example
+├── requirements.txt
+├── run_cloud.py               # Main entry point
+├── Dockerfile
+└── railway.json
+\`\`\`
+
+## STEP 2: IMPLEMENT BASE AGENT
+
+In agents/base_agent.py:
+- Create BaseStrategyAgent abstract class
+- Methods: generate_signals(market_data) -> List[Signal]
+- Methods: get_required_indicators() -> List[str]
+- Signal dataclass: symbol, side, confidence, entry_price, stop_loss, take_profit, metadata
+
+## STEP 3: IMPLEMENT STRATEGIES
+
+Create at least 5 strategies:
+1. **Trend Following** - EMA crossover with ATR stops
+2. **Mean Reversion** - RSI oversold/overbought with Bollinger Bands
+3. **Momentum** - ADX + directional movement
+4. **Breakout** - Range breakout with volume confirmation
+5. **Funding Rate** - Fade extreme funding rates
+
+Each strategy should:
+- Inherit from BaseStrategyAgent
+- Return signals with confidence 0-1
+- Include stop_loss and take_profit levels
+- Use ATR for dynamic position sizing
+
+## STEP 4: IMPLEMENT ORCHESTRATOR
+
+In orchestrator/server.py:
+- Collect signals from all registered agents
+- Pass through SignalAggregator (resolve conflicts, rank by confidence)
+- Apply RiskManager rules:
+  - Max 10 concurrent positions
+  - Max 5x leverage per position
+  - Max 30% portfolio in correlated assets
+  - Daily loss limit 5%
+- Send approved signals to Executor
+
+## STEP 5: IMPLEMENT KUCOIN CLIENT
+
+In execution/kucoin_client.py:
+- Authenticated client for KuCoin Futures API
+- Methods: get_positions(), place_order(), cancel_order(), get_account()
+- Handle rate limiting (30 req/sec)
+- Sign requests with HMAC-SHA256
+
+## STEP 6: IMPLEMENT EXECUTOR
+
+In execution/order_executor.py:
+- Convert Signal to KuCoin order
+- Place market orders with reduce-only stops
+- Monitor positions for TP/SL hits
+- Log all trades to JSONL file
+
+## STEP 7: CREATE ENTRY POINT
+
+In run_cloud.py:
+- Load config and initialize all agents
+- Start data feed (1-minute candles)
+- Run main loop:
+  1. Fetch latest market data
+  2. Generate signals from all agents
+  3. Orchestrator processes signals
+  4. Executor places orders
+  5. Sleep until next candle
+- Handle graceful shutdown
+
+## STEP 8: ADD CONFIGURATION
+
+.env.example:
+\`\`\`
+KUCOIN_API_KEY=
+KUCOIN_SECRET=
+KUCOIN_PASSPHRASE=
+DRY_RUN=true
+MAX_POSITIONS=10
+MAX_LEVERAGE=5
+SCAN_INTERVAL_MINUTES=15
+\`\`\`
+
+requirements.txt:
+\`\`\`
+requests>=2.28.0
+websockets>=10.0
+pandas>=1.5.0
+numpy>=1.23.0
+python-dotenv>=1.0.0
+\`\`\`
+
+## STEP 9: ADD TESTS
+
+Create tests for:
+- Each strategy generates valid signals
+- Risk manager blocks overleveraged positions
+- Executor calculates correct position sizes
+- KuCoin client handles API errors
+
+## STEP 10: DEPLOYMENT CONFIG
+
+Dockerfile:
+\`\`\`dockerfile
+FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "run_cloud.py", "--live"]
+\`\`\`
+
+railway.json:
+\`\`\`json
+{
+  "build": {"builder": "DOCKERFILE"},
+  "deploy": {"restartPolicyType": "ON_FAILURE"}
+}
+\`\`\`
+
+## BUILD ORDER
+
+Execute in this order:
+1. Create directory structure
+2. Implement base_agent.py with Signal dataclass
+3. Implement kucoin_client.py (test with dry run)
+4. Implement one strategy (trend_following.py)
+5. Implement orchestrator with basic risk rules
+6. Implement executor
+7. Create run_cloud.py and test end-to-end
+8. Add remaining strategies
+9. Add comprehensive tests
+10. Set up deployment config
+
+After each major step, run tests and verify functionality before proceeding.
+
+## SUCCESS CRITERIA
+
+The bot is complete when:
+- [ ] At least 5 strategies generate signals
+- [ ] Orchestrator aggregates and filters signals
+- [ ] Risk manager enforces position limits
+- [ ] Executor places orders on KuCoin (dry run first)
+- [ ] All trades logged to file
+- [ ] Tests pass
+- [ ] Deploys to Railway successfully
+
+Start building now. Create each file with full implementation, not stubs.
+\`\`\`
+
+---
+
 ## OBJECTION HANDLING
 
 **"30 days is too short"**
