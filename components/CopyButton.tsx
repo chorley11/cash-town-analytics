@@ -46,17 +46,17 @@ export function CopyButton({ data, label = "Copy for AI" }: CopyButtonProps) {
 }
 
 // Large prominent copy button for landing page
-export function CopyButtonLarge({ data }: { data: object }) {
+export function CopyButtonLarge({ data }: { data: string | object }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    const text = JSON.stringify(data, null, 2);
+    const text = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
   };
 
-  const size = JSON.stringify(data).length;
+  const size = typeof data === 'string' ? data.length : JSON.stringify(data).length;
   const sizeKB = (size / 1024).toFixed(1);
 
   return (
