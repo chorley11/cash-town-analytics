@@ -22,9 +22,9 @@ export const strategies = cashTownData.strategies.map(s => ({
   trades: s.metrics.total_trades,
   wins: s.metrics.wins,
   losses: s.metrics.losses,
-  winRate: s.metrics.win_rate,
-  pnl: s.metrics.total_pnl_usd,
-  avgPnl: s.metrics.avg_pnl_per_trade_usd,
+  win_rate: s.metrics.win_rate,
+  total_pnl: s.metrics.total_pnl_usd,
+  avg_pnl: s.metrics.avg_pnl_per_trade_usd,
   bestTrade: s.metrics.best_trade_usd,
   worstTrade: s.metrics.worst_trade_usd,
 }));
