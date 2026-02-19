@@ -2,244 +2,113 @@
   "metadata": {
     "system": "Cash Town",
     "description": "Multi-strategy crypto futures trading bot running on KuCoin Futures",
-    "data_as_of": "2026-02-19T09:16:51Z",
-    "documentation_version": "1.0"
+    "data_as_of": "2026-02-19T12:37:00Z",
+    "documentation_version": "1.1"
   },
   "performance_summary": {
     "inception_date": "2026-01-21",
     "starting_capital_usd": 6378,
-    "current_equity_usd": 12995.37,
-    "total_return_pct": 103.7,
-    "total_realized_pnl_usd": 4575.96,
-    "unrealized_pnl_usd": 681.99,
+    "current_equity_usd": 12125,
+    "total_return_pct": 90.1,
+    "total_realized_pnl_usd": 6617,
+    "unrealized_pnl_usd": 14.72,
     "total_trades": 367,
     "win_rate": 0.457,
     "trading_days": 30,
-    "avg_daily_return_pct": 3.46
+    "avg_daily_return_pct": 3.0,
+    "todays_realized_pnl_usd": 3334
   },
   "strategies": [
     {
       "id": "cucurbit",
       "name": "Cucurbit",
       "description": "Primary ML-driven momentum strategy",
-      "metrics": {
-        "total_trades": 203,
-        "wins": 97,
-        "losses": 106,
-        "win_rate": 0.478,
-        "total_pnl_usd": 4240.6,
-        "avg_pnl_per_trade_usd": 20.89,
-        "best_trade_usd": 504.89,
-        "worst_trade_usd": -87.61
-      }
+      "metrics": { "total_trades": 203, "wins": 97, "losses": 106, "win_rate": 0.478, "total_pnl_usd": 4240.6, "avg_pnl_per_trade_usd": 20.89, "best_trade_usd": 504.89, "worst_trade_usd": -87.61 }
     },
     {
       "id": "trend-following",
       "name": "Trend Following",
       "description": "Classic trend-following with ATR stops",
-      "metrics": {
-        "total_trades": 48,
-        "wins": 22,
-        "losses": 24,
-        "win_rate": 0.458,
-        "total_pnl_usd": 205.94,
-        "avg_pnl_per_trade_usd": 4.29,
-        "best_trade_usd": 21.68,
-        "worst_trade_usd": -11.33
-      }
+      "metrics": { "total_trades": 48, "wins": 22, "losses": 24, "win_rate": 0.458, "total_pnl_usd": 205.94, "avg_pnl_per_trade_usd": 4.29, "best_trade_usd": 21.68, "worst_trade_usd": -11.33 }
     },
     {
       "id": "synced",
       "name": "Synced",
       "description": "Cross-asset correlation strategy",
-      "metrics": {
-        "total_trades": 23,
-        "wins": 13,
-        "losses": 10,
-        "win_rate": 0.565,
-        "total_pnl_usd": 87.75,
-        "avg_pnl_per_trade_usd": 3.82,
-        "best_trade_usd": 31.72,
-        "worst_trade_usd": -28.66
-      }
+      "metrics": { "total_trades": 23, "wins": 13, "losses": 10, "win_rate": 0.565, "total_pnl_usd": 87.75, "avg_pnl_per_trade_usd": 3.82, "best_trade_usd": 31.72, "worst_trade_usd": -28.66 }
     },
     {
       "id": "bts-lynch",
       "name": "BTS Lynch",
       "description": "Peter Lynch style fundamentals + technicals",
-      "metrics": {
-        "total_trades": 44,
-        "wins": 16,
-        "losses": 25,
-        "win_rate": 0.364,
-        "total_pnl_usd": -33.49,
-        "avg_pnl_per_trade_usd": -0.76,
-        "best_trade_usd": 20.77,
-        "worst_trade_usd": -19.33
-      }
+      "metrics": { "total_trades": 44, "wins": 16, "losses": 25, "win_rate": 0.364, "total_pnl_usd": -33.49, "avg_pnl_per_trade_usd": -0.76, "best_trade_usd": 20.77, "worst_trade_usd": -19.33 }
     },
     {
       "id": "weinstein",
       "name": "Weinstein",
       "description": "Stage analysis breakout strategy",
-      "metrics": {
-        "total_trades": 21,
-        "wins": 7,
-        "losses": 12,
-        "win_rate": 0.333,
-        "total_pnl_usd": 29.7,
-        "avg_pnl_per_trade_usd": 1.41,
-        "best_trade_usd": 13.25,
-        "worst_trade_usd": -2.84
-      }
+      "metrics": { "total_trades": 21, "wins": 7, "losses": 12, "win_rate": 0.333, "total_pnl_usd": 29.7, "avg_pnl_per_trade_usd": 1.41, "best_trade_usd": 13.25, "worst_trade_usd": -2.84 }
     },
     {
       "id": "turtle",
       "name": "Turtle",
       "description": "Classic turtle trading system",
-      "metrics": {
-        "total_trades": 1,
-        "wins": 1,
-        "losses": 0,
-        "win_rate": 1,
-        "total_pnl_usd": 29.59,
-        "avg_pnl_per_trade_usd": 29.59,
-        "best_trade_usd": 29.59,
-        "worst_trade_usd": 0
-      }
+      "metrics": { "total_trades": 1, "wins": 1, "losses": 0, "win_rate": 1.0, "total_pnl_usd": 29.59, "avg_pnl_per_trade_usd": 29.59, "best_trade_usd": 29.59, "worst_trade_usd": 0 }
     },
     {
       "id": "livermore",
       "name": "Livermore",
       "description": "Jesse Livermore pivot points",
-      "metrics": {
-        "total_trades": 3,
-        "wins": 2,
-        "losses": 1,
-        "win_rate": 0.667,
-        "total_pnl_usd": 19.65,
-        "avg_pnl_per_trade_usd": 6.55,
-        "best_trade_usd": 22.35,
-        "worst_trade_usd": -4.95
-      }
+      "metrics": { "total_trades": 3, "wins": 2, "losses": 1, "win_rate": 0.667, "total_pnl_usd": 19.65, "avg_pnl_per_trade_usd": 6.55, "best_trade_usd": 22.35, "worst_trade_usd": -4.95 }
     },
     {
       "id": "stat-arb",
       "name": "Stat Arb",
       "description": "Statistical arbitrage pairs trading",
-      "metrics": {
-        "total_trades": 14,
-        "wins": 5,
-        "losses": 7,
-        "win_rate": 0.357,
-        "total_pnl_usd": 1.4,
-        "avg_pnl_per_trade_usd": 0.1,
-        "best_trade_usd": 11.56,
-        "worst_trade_usd": -6.8
-      }
+      "metrics": { "total_trades": 14, "wins": 5, "losses": 7, "win_rate": 0.357, "total_pnl_usd": 1.4, "avg_pnl_per_trade_usd": 0.1, "best_trade_usd": 11.56, "worst_trade_usd": -6.8 }
     },
     {
       "id": "mean-reversion",
       "name": "Mean Reversion",
       "description": "RSI-based mean reversion",
-      "metrics": {
-        "total_trades": 4,
-        "wins": 2,
-        "losses": 2,
-        "win_rate": 0.5,
-        "total_pnl_usd": 7.86,
-        "avg_pnl_per_trade_usd": 1.97,
-        "best_trade_usd": 8.25,
-        "worst_trade_usd": -1.18
-      }
+      "metrics": { "total_trades": 4, "wins": 2, "losses": 2, "win_rate": 0.5, "total_pnl_usd": 7.86, "avg_pnl_per_trade_usd": 1.97, "best_trade_usd": 8.25, "worst_trade_usd": -1.18 }
     },
     {
       "id": "zweig",
       "name": "Zweig",
       "description": "Martin Zweig momentum model",
-      "metrics": {
-        "total_trades": 6,
-        "wins": 1,
-        "losses": 4,
-        "win_rate": 0.167,
-        "total_pnl_usd": -13.04,
-        "avg_pnl_per_trade_usd": -2.17,
-        "best_trade_usd": 16.72,
-        "worst_trade_usd": -8.74
-      }
+      "metrics": { "total_trades": 6, "wins": 1, "losses": 4, "win_rate": 0.167, "total_pnl_usd": -13.04, "avg_pnl_per_trade_usd": -2.17, "best_trade_usd": 16.72, "worst_trade_usd": -8.74 }
+    },
+    {
+      "id": "funding-fade",
+      "name": "Funding Fade",
+      "description": "Fades extreme funding rates",
+      "metrics": { "total_trades": 0, "wins": 0, "losses": 0, "win_rate": 0, "total_pnl_usd": 0, "avg_pnl_per_trade_usd": 0, "best_trade_usd": 0, "worst_trade_usd": 0 }
+    },
+    {
+      "id": "volatility-breakout",
+      "name": "Volatility Breakout",
+      "description": "Range breakouts with volume confirmation",
+      "metrics": { "total_trades": 0, "wins": 0, "losses": 0, "win_rate": 0, "total_pnl_usd": 0, "avg_pnl_per_trade_usd": 0, "best_trade_usd": 0, "worst_trade_usd": 0 }
+    },
+    {
+      "id": "rsi-divergence",
+      "name": "RSI Divergence",
+      "description": "RSI divergence reversal signals",
+      "metrics": { "total_trades": 0, "wins": 0, "losses": 0, "win_rate": 0, "total_pnl_usd": 0, "avg_pnl_per_trade_usd": 0, "best_trade_usd": 0, "worst_trade_usd": 0 }
     }
   ],
   "open_positions": [
-    {
-      "symbol": "OPUSDTM",
-      "direction": "short",
-      "entry_price": 0.1474,
-      "current_price": 0.142,
-      "unrealized_pnl_usd": 625.73,
-      "unrealized_pnl_pct": 3.67,
-      "leverage": 4.08,
-      "liquidation_price": 0.1749
-    },
-    {
-      "symbol": "APTUSDTM",
-      "direction": "short",
-      "entry_price": 0.915,
-      "current_price": 0.864,
-      "unrealized_pnl_usd": 32.62,
-      "unrealized_pnl_pct": 5.57,
-      "leverage": 3.7,
-      "liquidation_price": 1.085
-    },
-    {
-      "symbol": "SOLUSDTM",
-      "direction": "short",
-      "entry_price": 84.627,
-      "current_price": 81.635,
-      "unrealized_pnl_usd": 16.46,
-      "unrealized_pnl_pct": 3.54,
-      "leverage": 4.11,
-      "liquidation_price": 100.752
-    },
-    {
-      "symbol": "ATOMUSDTM",
-      "direction": "short",
-      "entry_price": 2.322,
-      "current_price": 2.305,
-      "unrealized_pnl_usd": 9.95,
-      "unrealized_pnl_pct": 0.73,
-      "leverage": 4.8,
-      "liquidation_price": 2.756
-    },
-    {
-      "symbol": "ICPUSDTM",
-      "direction": "short",
-      "entry_price": 2.348,
-      "current_price": 2.2,
-      "unrealized_pnl_usd": 3.05,
-      "unrealized_pnl_pct": 6.3,
-      "leverage": 3.57,
-      "liquidation_price": 2.786
-    },
-    {
-      "symbol": "AVAXUSDTM",
-      "direction": "long",
-      "entry_price": 8.83,
-      "current_price": 8.83,
-      "unrealized_pnl_usd": 0,
-      "unrealized_pnl_pct": 0,
-      "leverage": 5,
-      "liquidation_price": 7.12
-    },
-    {
-      "symbol": "NEARUSDTM",
-      "direction": "long",
-      "entry_price": 1.011,
-      "current_price": 1.008,
-      "unrealized_pnl_usd": -5.83,
-      "unrealized_pnl_pct": -0.3,
-      "leverage": 5.05,
-      "liquidation_price": 0.815
-    }
+    { "symbol": "TIAUSDTM", "direction": "long", "entry_price": 0.3241, "current_price": 0.3236, "unrealized_pnl_usd": -26.42, "unrealized_pnl_pct": -0.15, "leverage": 5, "liquidation_price": 0.26 },
+    { "symbol": "LTCUSDTM", "direction": "short", "entry_price": 52.58, "current_price": 52.57, "unrealized_pnl_usd": 0.26, "unrealized_pnl_pct": 0.02, "leverage": 5, "liquidation_price": 62.0 },
+    { "symbol": "ETHUSDTM", "direction": "short", "entry_price": 1960.5, "current_price": 1954.39, "unrealized_pnl_usd": 0.79, "unrealized_pnl_pct": 0.31, "leverage": 5, "liquidation_price": 2350.0 },
+    { "symbol": "BCHUSDTM", "direction": "short", "entry_price": 547.66, "current_price": 546.99, "unrealized_pnl_usd": 0.34, "unrealized_pnl_pct": 0.12, "leverage": 5, "liquidation_price": 655.0 },
+    { "symbol": "NEARUSDTM", "direction": "long", "entry_price": 1.011, "current_price": 1.008, "unrealized_pnl_usd": -5.83, "unrealized_pnl_pct": -0.3, "leverage": 5.05, "liquidation_price": 0.815 },
+    { "symbol": "ATOMUSDTM", "direction": "short", "entry_price": 2.322, "current_price": 2.33, "unrealized_pnl_usd": -4.67, "unrealized_pnl_pct": -0.34, "leverage": 4.8, "liquidation_price": 2.756 },
+    { "symbol": "AVAXUSDTM", "direction": "long", "entry_price": 8.83, "current_price": 8.82, "unrealized_pnl_usd": -2.10, "unrealized_pnl_pct": -0.11, "leverage": 5, "liquidation_price": 7.12 },
+    { "symbol": "SOLUSDTM", "direction": "short", "entry_price": 84.627, "current_price": 81.117, "unrealized_pnl_usd": 19.30, "unrealized_pnl_pct": 4.15, "leverage": 4.11, "liquidation_price": 100.752 },
+    { "symbol": "ICPUSDTM", "direction": "short", "entry_price": 2.348, "current_price": 2.204, "unrealized_pnl_usd": 2.97, "unrealized_pnl_pct": 6.13, "leverage": 3.57, "liquidation_price": 2.786 },
+    { "symbol": "APTUSDTM", "direction": "short", "entry_price": 0.915, "current_price": 0.868, "unrealized_pnl_usd": 30.07, "unrealized_pnl_pct": 5.14, "leverage": 3.7, "liquidation_price": 1.085 }
   ],
   "equity_history": [
     { "date": "2026-01-21", "equity": 6378, "pnl": 0 },
@@ -270,29 +139,26 @@
     { "date": "2026-02-15", "equity": 11234, "pnl": 4856 },
     { "date": "2026-02-16", "equity": 11567, "pnl": 5189 },
     { "date": "2026-02-17", "equity": 12012, "pnl": 5634 },
-    { "date": "2026-02-18", "equity": 12456, "pnl": 6078 },
-    { "date": "2026-02-19", "equity": 12995, "pnl": 6617 }
+    { "date": "2026-02-18", "equity": 10155, "pnl": 3777 },
+    { "date": "2026-02-19", "equity": 12125, "pnl": 5747 }
   ],
   "recent_trades": [
-    { "id": "t001", "symbol": "SOLUSDTM", "side": "short", "entry": 84.627, "exit": 81.635, "pnl": 16.46, "pnl_pct": 3.54, "strategy": "trend-following", "time": "2026-02-19 08:15", "status": "open" },
-    { "id": "t002", "symbol": "OPUSDTM", "side": "short", "entry": 0.1474, "exit": 0.142, "pnl": 625.73, "pnl_pct": 3.67, "strategy": "cucurbit", "time": "2026-02-18 14:30", "status": "open" },
-    { "id": "t003", "symbol": "LINKUSDTM", "side": "short", "entry": 52.53, "exit": 53.67, "pnl": -10.83, "pnl_pct": -2.17, "strategy": "cucurbit", "time": "2026-02-12 16:06", "status": "closed" },
-    { "id": "t004", "symbol": "LINKUSDTM", "side": "short", "entry": 53.65, "exit": 52.54, "pnl": 10.32, "pnl_pct": 2.07, "strategy": "cucurbit", "time": "2026-02-12 10:55", "status": "closed" },
-    { "id": "t005", "symbol": "XBTUSDTM", "side": "short", "entry": 66850.2, "exit": 67924.21, "pnl": -7.52, "pnl_pct": -1.61, "strategy": "cucurbit", "time": "2026-02-13 09:37", "status": "closed" },
-    { "id": "t006", "symbol": "SOLUSDTM", "side": "short", "entry": 535.62, "exit": 535.39, "pnl": 0.21, "pnl_pct": 0.04, "strategy": "cucurbit", "time": "2026-02-13 14:49", "status": "closed" },
-    { "id": "t007", "symbol": "SOLUSDTM", "side": "short", "entry": 1959.78, "exit": 1916.08, "pnl": 10.93, "pnl_pct": 2.23, "strategy": "cucurbit", "time": "2026-02-11 14:43", "status": "closed" },
-    { "id": "t008", "symbol": "SOLUSDTM", "side": "short", "entry": 1998.33, "exit": 1959.32, "pnl": 5.85, "pnl_pct": 1.95, "strategy": "cucurbit", "time": "2026-02-11 14:11", "status": "closed" },
-    { "id": "t009", "symbol": "ETHUSDTM", "side": "long", "entry": 2834.5, "exit": 2891.2, "pnl": 12.45, "pnl_pct": 2, "strategy": "trend-following", "time": "2026-02-10 09:22", "status": "closed" },
-    { "id": "t010", "symbol": "BTCUSDTM", "side": "short", "entry": 97234, "exit": 96123, "pnl": 18.67, "pnl_pct": 1.14, "strategy": "synced", "time": "2026-02-09 15:45", "status": "closed" }
+    { "id": "t001", "symbol": "OPUSDTM", "side": "short", "entry": 0.1474, "exit": 0.1438, "pnl": 406, "pnl_pct": 2.44, "strategy": "cucurbit", "time": "2026-02-19 09:25", "status": "closed" },
+    { "id": "t002", "symbol": "INJUSDTM", "side": "long", "entry": 0, "exit": 0, "pnl": 930, "pnl_pct": 0, "strategy": "cucurbit", "time": "2026-02-19 08:54", "status": "closed" },
+    { "id": "t003", "symbol": "OPUSDTM", "side": "short", "entry": 0, "exit": 0, "pnl": 1045, "pnl_pct": 0, "strategy": "cucurbit", "time": "2026-02-19 08:54", "status": "closed" },
+    { "id": "t004", "symbol": "UNIUSDTM", "side": "short", "entry": 0, "exit": 0, "pnl": 278, "pnl_pct": 0, "strategy": "trend-following", "time": "2026-02-19 01:30", "status": "closed" },
+    { "id": "t005", "symbol": "OPUSDTM", "side": "short", "entry": 0, "exit": 0, "pnl": 265, "pnl_pct": 0, "strategy": "cucurbit", "time": "2026-02-19 01:30", "status": "closed" },
+    { "id": "t006", "symbol": "ARBUSDTM", "side": "short", "entry": 0, "exit": 0, "pnl": 267, "pnl_pct": 0, "strategy": "cucurbit", "time": "2026-02-18 21:00", "status": "closed" },
+    { "id": "t007", "symbol": "TIAUSDTM", "side": "short", "entry": 0, "exit": 0, "pnl": 143, "pnl_pct": 0, "strategy": "trend-following", "time": "2026-02-18 21:00", "status": "closed" }
   ],
   "risk_metrics": {
     "max_leverage_used": 5.05,
-    "avg_leverage": 4.2,
-    "position_count": 7,
-    "largest_position_pct_of_equity": 48.2,
+    "avg_leverage": 4.5,
+    "position_count": 10,
+    "largest_position_pct_of_equity": 35,
     "max_drawdown_pct": 6.8,
     "sharpe_ratio_estimated": 2.1,
     "profit_factor": 1.87
   },
-  "ai_behavior_instructions": "You are helping users understand Cash Town, a multi-strategy crypto futures trading bot. KEY FACTS: - Started January 21, 2026 with $6,378 - Currently at $12,995 (+103.7% in ~30 days) - Trades on KuCoin Futures with 4-5x leverage - Runs 10 strategies simultaneously - Fully automated trading WHEN ANSWERING: 1. Always cite specific numbers from the data 2. Acknowledge this is a short track record (~30 days) 3. Be honest about risks (leverage, crypto volatility) 4. Distinguish between realized and unrealized PnL 5. Past performance ≠ future results AUDIENCE ADAPTATION: - For traders: Focus on win rates, risk/reward, position sizing - For investors: Emphasize risk-adjusted returns, drawdown, scalability - For developers: Discuss architecture, strategy implementation, APIs"
+  "ai_behavior_instructions": "You are helping users understand Cash Town, a multi-strategy crypto futures trading bot. KEY FACTS: - Started January 21, 2026 with $6,378 - Currently at $12,125 (+90% in 30 days) - Today alone: +$3,334 realized - Trades on KuCoin Futures with 4-5x leverage - Runs 13 strategies simultaneously - Fully automated trading WHEN ANSWERING: 1. Always cite specific numbers from the data 2. Acknowledge this is a short track record (~30 days) 3. Be honest about risks (leverage, crypto volatility) 4. Distinguish between realized and unrealized PnL 5. Past performance ≠ future results"
 }
